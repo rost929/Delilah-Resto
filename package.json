@@ -1,0 +1,27 @@
+{
+  "name": "delilah",
+  "version": "1.0.0",
+  "description": "Project for Delilah restaurant",
+  "main": "App.js",
+  "scripts": {
+    "start": "node src/App.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --watch src src/App.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rost929/Delilah-Resto.git"
+  },
+  "author": "rost929",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rost929/Delilah-Resto/issues"
+  },
+  "homepage": "https://github.com/rost929/Delilah-Resto#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies" : {
+    "nodemon": "^2.0.7"
+  }
+}
