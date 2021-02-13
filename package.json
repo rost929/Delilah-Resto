@@ -4,9 +4,9 @@
   "description": "Project for Delilah restaurant",
   "main": "App.js",
   "scripts": {
-    "start": "node src/App.js",
+    "start": "node src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --watch src src/App.js"
+    "dev": "nodemon --watch src src/app.js"
   },
   "repository": {
     "type": "git",
@@ -19,9 +19,13 @@
   },
   "homepage": "https://github.com/rost929/Delilah-Resto#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.5.0"
   },
-  "devDependencies" : {
+  "devDependencies": {
+    "dotenv": "^8.2.0",
     "nodemon": "^2.0.7"
   }
 }
