@@ -1,8 +1,9 @@
-const { Sequelize, Model, Datatypes } = require("sequelize");
+const { Sequelize } = require("sequelize");
 const { db } = require("../utils/config.js");
+
 require("dotenv").config();
 
-const sequelize = new Sequelize(db.database, db.username, "", {
+const sequelize = new Sequelize(db.database, db.username, db.password, {
   host: db.host,
   dialect: db.dialect,
 });

@@ -1,13 +1,12 @@
 "use-strict";
-const sequelize =  require("../Database/db.js")
-const { Sequelize, DataTypes } = require("sequelize");
-
+const sequelize =  require("./db.js");
+const {DataTypes } = require("sequelize");
+const order = require("./order.js")
 
 const user = sequelize.define("User", {
   userId: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
+    type: DataTypes.UUID,
+    primaryKey: true
   },
   username: {
     type: DataTypes.STRING(14),
@@ -31,10 +30,9 @@ const user = sequelize.define("User", {
   },
 });
 
-// `sequelize.define` also returns the model
-console.log(user === sequelize.models.User); // true
+user.hasMany(order, { foreignKey: "orderId" });
+order.belongsTo(user, { foreignKey: 'orderId' });
 
 user.sync();
-
 
 module.exports = user;

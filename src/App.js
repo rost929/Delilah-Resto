@@ -1,8 +1,13 @@
 "use-strict";
 const express = require("express");
 const bodyParser = require("body-parser");
-const sequelize = require("../Database/db");
-const user  = require("./user.js");
+require("../Database/db");
+require("../Database/user.js");
+require("../Database/product.js");
+require("../Database/favourite.js");
+require("../Database/order.js");
+require("../Database/state.js");
+require("../Database/order-product.js");
 require("dotenv").config();
 
 const app = express();
