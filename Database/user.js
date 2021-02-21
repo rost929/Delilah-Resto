@@ -1,19 +1,21 @@
 "use-strict";
-const sequelize =  require("./db.js");
-const {DataTypes } = require("sequelize");
-const order = require("./order.js")
+//import { v4 as uuidv4 } from 'uuid';
+const uuid = require("uuid");
+const sequelize = require("./db.js");
+const { DataTypes } = require("sequelize");
+const order = require("./order.js");
 
 const user = sequelize.define("User", {
   userId: {
     type: DataTypes.UUID,
-    primaryKey: true
+    primaryKey: true,
   },
   username: {
     type: DataTypes.STRING(14),
     allowNull: false,
   },
   password: {
-    type: DataTypes.STRING(24),
+    type: DataTypes.STRING(64),
     allowNull: false,
   },
   phone: {
@@ -30,9 +32,11 @@ const user = sequelize.define("User", {
   },
 });
 
-user.hasMany(order, { foreignKey: "orderId" });
-order.belongsTo(user, { foreignKey: 'orderId' });
+user.beforeCreate((user, _) => {
+  return (user.userId = uuid.v4());
+});
 
-user.sync();
+user.hasMany(order, { foreignKey: "orderId" });
+order.belongsTo(user, { foreignKey: "orderId" });
 
 module.exports = user;

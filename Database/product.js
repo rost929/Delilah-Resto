@@ -19,10 +19,6 @@ const product = sequelize.define("Product", {
 });
 
 // `sequelize.define` also returns the model
-console.log(product === sequelize.models.Product); // true
-
-
-
-product.sync();
+//console.log(product === sequelize.models.Product); // true
 
 module.exports = product;

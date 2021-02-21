@@ -14,4 +14,6 @@ const order_product = sequelize.define("order_product", {
 order.belongsToMany(product, { through: 'order_product', foreignKey: 'orderId' });
 product.belongsToMany(order, { through: 'order_product', foreignKey: 'productId' });
 
+sequelize.sync();
+
 module.exports = order_product;

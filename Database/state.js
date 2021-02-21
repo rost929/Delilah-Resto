@@ -19,6 +19,4 @@ const state = sequelize.define("State", {
 state.hasMany(order, { foreignKey: "orderId" });
 order.belongsTo(state, { foreignKey: "orderId" });
 
-state.sync({ force: true });
-
 module.exports = state;

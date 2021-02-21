@@ -14,8 +14,6 @@ const favourite = sequelize.define("Favourite", {
 favourite.belongsTo(user, { foreignKey: "userId" });
 favourite.belongsTo(product, { foreignKey: "productId" });
 
-favourite.sync();
-
 // `sequelize.define` also returns the model
 //console.log(product === sequelize.models.Product); // true
 

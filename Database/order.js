@@ -25,8 +25,4 @@ const order = sequelize.define("Order", {
   },
 });
 
-
-
-order.sync({ force: true });
-
 module.exports = order;
