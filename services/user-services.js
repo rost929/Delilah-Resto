@@ -24,17 +24,21 @@ const createNewUser = async (username, password, phone, address, mail) => {
 };
 
 async function findAllUsers() {
+  try {
     return await user.findAll({ atrributes: ["username"] });
+  } catch (error) {
+    return error;
+  }
 }
 
 async function findUserById(userId) {
-    return await user.findByPk(userId);
+  return await user.findByPk(userId);
 }
 
 async function findUserByUsername(username) {
-    return await user.findOne({
-      where: { username: username },
-    });
+  return await user.findOne({
+    where: { username: username },
+  });
 }
 
 module.exports = {
@@ -42,5 +46,5 @@ module.exports = {
   createNewUser,
   findAllUsers,
   findUserById,
-  findUserByUsername
+  findUserByUsername,
 };

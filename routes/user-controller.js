@@ -41,18 +41,26 @@ router.post("/user/login", async (req, res) => {
 });
 
 // Get all users
-router.get("/users", async (req, res) => {
+router.get("/users", aut.verifyTokenHeader, async (req, res) => {
   try {
-    const users = await service.findAllUsers();
-    res.status(200).send(users);
+    const tokenResult = await aut.validateToken(req.token);
+    console.log("tokenResult ", tokenResult.validToken);
+    if (tokenResult.validToken === true) {
+      const users = await service.findAllUsers();
+      res.setHeader("content-type", "application/json");
+      return res.status(200).send(users);
+    }
+    res.status(403).json({
+      message: tokenResult.message,
+    });
   } catch (error) {
-    res.status(404).send("Could not be found any user");
+    res.status(403).send("Invalid Token");
   }
 });
 
 router.get("/userById/:userId", async (req, res) => {
   try {
-    const userFound = await service.findUserById(re.params.userId);
+    const userFound = await service.findUserById(req.params.userId);
     if (!userFound) res.status(404).send("The user could not be found");
     res.status(200).send(userFound);
   } catch (error) {
@@ -60,13 +68,16 @@ router.get("/userById/:userId", async (req, res) => {
   }
 });
 
-router.get("/user/:username", async (req, res) => {
+router.get("/user/:username", aut.verifyTokenHeader, async (req, res) => {
   try {
-    const userFound = await service.findUserByUsername(req.params.username);
-    if (!userFound) res.status(404).send("The user could not be found");
-    res.status(200).send(userFound);
+    const tokenResult = await aut.validateToken(req.token);
+    if (tokenResult.validToken === true) {
+      const userFound = await service.findUserByUsername(req.params.username);
+      if (!userFound) res.status(404).send("The user could not be found");
+      res.status(200).send(userFound);
+    }
   } catch (error) {
-    res.status(400).send("Bad request");
+    res.status(403).send("Token Invalid");
   }
 });
 

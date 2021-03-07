@@ -1,18 +1,24 @@
 "use-strict";
-const sequelize =  require("./db.js");
-const {DataTypes } = require("sequelize");
-const order = require("./order.js")
+const sequelize = require("./db.js");
+const { DataTypes } = require("sequelize");
+const order = require("./order.js");
 const product = require("./product.js");
 
 const order_product = sequelize.define("order_product", {
   idOrderProduct: {
     type: DataTypes.UUID,
-    primaryKey: true
-  }
+    primaryKey: true,
+  },
 });
 
-order.belongsToMany(product, { through: 'order_product', foreignKey: 'orderId' });
-product.belongsToMany(order, { through: 'order_product', foreignKey: 'productId' });
+order.belongsToMany(product, {
+  through: "order_product",
+  foreignKey: "orderId",
+});
+product.belongsToMany(order, {
+  through: "order_product",
+  foreignKey: "productId",
+});
 
 sequelize.sync();
 

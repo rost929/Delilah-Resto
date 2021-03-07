@@ -8,6 +8,10 @@ const product = sequelize.define("Product", {
     primaryKey: true,
     autoIncrement: true,
   },
+  name:{
+    type: DataTypes.STRING(30),
+    allowNull: false
+  },
   price: {
     type: DataTypes.DOUBLE(),
     allowNull: false,

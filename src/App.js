@@ -12,12 +12,14 @@ require("../Database/order-product.js");
 require("dotenv").config();
 
 const clientEndpoints = require("../routes/user-controller.js");
+const productEndpoints = require("../routes/product-controller.js");
 
 //Middlewares
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/api/v1/", clientEndpoints);
+app.use("/api/v1/", productEndpoints);
 
 app.listen(process.env.PORT, () =>
   console.log("Server is running " + process.env.PORT)
